@@ -63,6 +63,7 @@ def post_event():
 # Endpoint para resetar o estado do serviço
 @balance_bp.route('/reset', methods=['POST'])
 def reset():
+    print('Endpoint /reset chamado')
     balance_service.reset()
     return 'OK', 200
 
