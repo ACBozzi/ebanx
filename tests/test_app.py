@@ -20,7 +20,10 @@ class TestBalanceEndpoints(unittest.TestCase):
     def test_get_balance_non_existing_account(self):
         # Testa o endpoint para obter saldo de uma conta inexistente
         response = self.client.get('/balance?account_id=1234')
+
+        #se a conta não foi encontrada
         self.assertEqual(response.status_code, 404)
+
         self.assertEqual(response.data.decode('utf-8'), '0')
 
     def test_create_account_with_initial_balance(self):
@@ -79,3 +82,15 @@ class TestBalanceEndpoints(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+'''
+NÃO PREVISTO
+
+Manipulação com eventos negativos
+
+if event.amount <= 0:  # Verifica se o valor da transferência é negativo ou zero
+        return None  # Retorna None para indicar uma transferência inválida
+
+Transferência com Saldo Insuficiente
+
+'''

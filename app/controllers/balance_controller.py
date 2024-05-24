@@ -1,3 +1,5 @@
+#Camada de Apresentação
+
 from flask import Blueprint, jsonify, request
 
 from ..models.event import Event
@@ -58,6 +60,27 @@ def post_event():
     # Retorna a resposta como JSON e status 201
     return jsonify(response), 201
 
+'''
+balance_service = BalanceService()
+
+@balance_bp.route('/event', methods=['POST'])
+def post_event():
+    data = request.get_json()
+    event_type = data.get('type')
+    amount = data.get('amount')
+    destination = data.get('destination')
+    origin = data.get('origin')
+
+    event = EventFactory.create_event(event_type, amount, destination, origin)
+    response = balance_service.process_event(event)
+
+    if response is None:
+        if event_type == 'withdraw' or event_type == 'transfer':
+            return '0', 404
+        return jsonify({"error": "Invalid event"}), 400
+
+    return jsonify(response), 201
+'''
 
 #------------------------------------------------------------------------------------------------------------
 # Endpoint para resetar o estado do serviço
