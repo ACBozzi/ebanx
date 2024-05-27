@@ -21,10 +21,13 @@ class BalanceService:
         elif event.event_type == 'withdraw':
             if event.origin not in self.accounts:
                 return None
-            if self.accounts[event.origin] < event.amount:
+            if self.accounts[event.origin] - (event.amount) >= (-150): # self.accounts[event.origin] <
+                #return None
+                self.accounts[event.origin] -= event.amount
+                return {"origin": {"id": event.origin, "balance": self.accounts[event.origin]}}
+            else:
                 return None
-            self.accounts[event.origin] -= event.amount
-            return {"origin": {"id": event.origin, "balance": self.accounts[event.origin]}}
+
 
         elif event.event_type == 'transfer':
             #verifica se a conta de origem existe
